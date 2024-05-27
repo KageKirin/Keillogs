@@ -1,0 +1,26 @@
+name: build-branch
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        framework: [net8.0]
+    steps:
+    - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
+    - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
+      with:
+        name: github-nuget
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: ./.github/jobactions/build
+      with:
+        configuration: ${{ matrix.configuration }}
+        framework: ${{ matrix.framework }}
