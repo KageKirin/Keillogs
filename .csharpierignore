@@ -1,0 +1,9 @@
+## .csharpierignore for MascotCapsule.Unity working environment
+
+## never format packages
+Packages/
+Library/
+UserSettings/
+
+## but format MascotCapsule package
+!Packages/MascotCapsule
