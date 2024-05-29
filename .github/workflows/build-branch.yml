@@ -12,15 +12,17 @@ jobs:
       packages: read
     strategy:
       matrix:
-        configuration: [Debug, Release]
-        framework: [net8.0]
+        configurations: [Debug, Release]
+        frameworks: [net8.0]
     steps:
     - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
+    - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
+    - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
     - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
       with:
         name: github-nuget
         token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: ./.github/jobactions/build
+    - uses: kagekirin/gha-dotnet/.github/actions/build@main
       with:
-        configuration: ${{ matrix.configuration }}
-        framework: ${{ matrix.framework }}
+        configurations: ${{ matrix.configurations }}
+        frameworks: ${{ matrix.frameworks }}
