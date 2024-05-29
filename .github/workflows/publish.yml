@@ -54,6 +54,13 @@ jobs:
         frameworks: |-
           net8.0
           netstandard2.1
+    - id: nuget-pack
+      uses: kagekirin/gha-dotnet/.github/actions/nuget-pack@main
+      with:
+        configurations: Release
+        frameworks: |-
+          net8.0
+          netstandard2.1
     - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
       with:
         name: ${{ matrix.source }}
@@ -64,3 +71,4 @@ jobs:
       with:
         registry: ${{ matrix.registry }}
         token: ${{ secrets[matrix.token] }}
+        packages: ${{ steps.nuget-pack.outputs.packages }}
