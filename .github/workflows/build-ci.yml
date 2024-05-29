@@ -13,18 +13,20 @@ jobs:
       packages: read
     strategy:
       matrix:
-        configuration: [Debug, Release]
-        framework: [net8.0]
+        configurations: [Debug, Release]
+        frameworks: [net8.0]
     steps:
     - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
+    - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
+    - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
     - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
       with:
         name: github-nuget
         token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: ./.github/jobactions/build
+    - uses: kagekirin/gha-dotnet/.github/actions/build@main
       with:
-        configuration: ${{ matrix.configuration }}
-        framework: ${{ matrix.framework }}
+        configurations: ${{ matrix.configurations }}
+        frameworks: ${{ matrix.frameworks }}
 
   tag:
     if: github.event.pull_request.merged == true
@@ -34,6 +36,8 @@ jobs:
     - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
       with:
         ssh-key: "${{ secrets.DEPLOY_KEY }}"
+    - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
+    - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
     - id: create-tag
       uses: ./.github/jobactions/tag
     - uses: kagekirin/gha-utils/.github/actions/git-push-tag@main
@@ -61,7 +65,15 @@ jobs:
     needs: build
     steps:
     - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
-    - uses: ./.github/jobactions/nuget-prepare-publish
+    - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
+    - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
+    - uses: kagekirin/gha-dotnet/.github/actions/build@main
+      with:
+        configurations: Release
+        frameworks: |-
+          net8.0
+          netstandard2.1
+    - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
       with:
         name: ${{ matrix.source }}
         registry: ${{ matrix.registry }}
