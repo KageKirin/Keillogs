@@ -38,30 +38,21 @@ jobs:
             token: GITHUB_TOKEN
     needs: build
     steps:
-    - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
-    - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
-    - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
-    - uses: kagekirin/gha-dotnet/.github/actions/build@main
-      with:
-        configurations: Release
-        frameworks: |-
-          net8.0
-          netstandard2.1
-    - id: nuget-pack
-      uses: kagekirin/gha-dotnet/.github/actions/nuget-pack@main
-      with:
-        configurations: Release
-        frameworks: |-
-          net8.0
-          netstandard2.1
     - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
       with:
         name: ${{ matrix.source }}
         registry: ${{ matrix.registry }}
         username: ${{ matrix.username }}
         token: ${{ secrets[matrix.token] }}
+    - id: build-pack
+      uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack-publish@main
+      with:
+        configurations: Release
+        frameworks: |-
+          net8.0
+          netstandard2.1
     - uses: kagekirin/gha-dotnet/.github/actions/nuget-publish@main
       with:
         registry: ${{ matrix.registry }}
         token: ${{ secrets[matrix.token] }}
-        packages: ${{ steps.nuget-pack.outputs.packages }}
+        packages: ${{ steps.build-pack.outputs.packages }}
