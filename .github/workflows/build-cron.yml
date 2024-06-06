@@ -38,27 +38,18 @@ jobs:
             token: GITHUB_TOKEN
     needs: build
     steps:
-    - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
-    - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
-    - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
-    - uses: kagekirin/gha-dotnet/.github/actions/build@main
-      with:
-        configurations: Release
-        frameworks: |-
-          net8.0
-          netstandard2.1
-    - uses: kagekirin/gha-dotnet/.github/actions/nuget-pack@main
-      with:
-        configurations: Release
-        frameworks: |-
-          net8.0
-          netstandard2.1
     - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
       with:
         name: ${{ matrix.source }}
         registry: ${{ matrix.registry }}
         username: ${{ matrix.username }}
         token: ${{ secrets[matrix.token] }}
+    - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack@main
+      with:
+        configurations: Release
+        frameworks: |-
+          net8.0
+          netstandard2.1
 
 
   ### TODO: do not tag here, instead create a branch, update dependencies (dotnet )
