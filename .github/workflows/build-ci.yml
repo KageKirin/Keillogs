@@ -57,12 +57,6 @@ jobs:
             token: GITHUB_TOKEN
     needs: build
     steps:
-    - uses: kagekirin/gha-py-toolbox/actions/dotnet/add-registry@main
-      with:
-        name: ${{ matrix.source }}
-        registry: ${{ matrix.registry }}
-        username: ${{ matrix.username }}
-        token: ${{ secrets[matrix.token] }}
     - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack@main
       with:
         configurations: Release
