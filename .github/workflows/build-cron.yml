@@ -38,7 +38,7 @@ jobs:
             token: GITHUB_TOKEN
     needs: build
     steps:
-    - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
+    - uses: kagekirin/gha-py-toolbox/actions/dotnet/add-registry@main
       with:
         name: ${{ matrix.source }}
         registry: ${{ matrix.registry }}
