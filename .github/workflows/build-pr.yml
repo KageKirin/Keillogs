@@ -14,14 +14,7 @@ jobs:
         configurations: [Debug, Release]
         frameworks: [net8.0]
     steps:
-    - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
-    - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
-    - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
-    - uses: kagekirin/gha-dotnet/.github/actions/nuget-add-registry@main
-      with:
-        name: github-nuget
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: kagekirin/gha-dotnet/.github/actions/build@main
+    - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build@main
       with:
         configurations: ${{ matrix.configurations }}
         frameworks: ${{ matrix.frameworks }}
