@@ -44,15 +44,12 @@ jobs:
         registry: ${{ matrix.registry }}
         username: ${{ matrix.username }}
         token: ${{ secrets[matrix.token] }}
-    - id: build-pack
+    - id: build-pack-publish
       uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack-publish@main
       with:
         configurations: Release
         frameworks: |-
           net8.0
           netstandard2.1
-    - uses: kagekirin/gha-dotnet/.github/actions/nuget-publish@main
-      with:
         registry: ${{ matrix.registry }}
         token: ${{ secrets[matrix.token] }}
-        packages: ${{ steps.build-pack.outputs.packages }}
