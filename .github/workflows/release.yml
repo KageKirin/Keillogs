@@ -11,17 +11,8 @@ jobs:
     permissions:
       contents: write # allow GITHUB_TOKEN to create releases
     steps:
-    - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
-    - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
-    - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
-    - uses: kagekirin/gha-dotnet/.github/actions/build@main
-      with:
-        configurations: Release
-        frameworks: |-
-          net8.0
-          netstandard2.1
-    - id: nuget-pack
-      uses: kagekirin/gha-dotnet/.github/actions/nuget-pack@main
+    - id: build-pack
+      uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack@main
       with:
         configurations: Release
         frameworks: |-
@@ -32,6 +23,6 @@ jobs:
         title: Release ${{ github.action_ref }}
         generate-notes: true
         files: |
-          ${{ steps.nuget-pack.outputs.packages }}
+          ${{ steps.build-pack.outputs.packages }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
