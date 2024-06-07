@@ -6,7 +6,7 @@ on:
       - '*'
 
 jobs:
-  nuget:
+  publish-nuget:
     runs-on: ubuntu-latest
     permissions:
       packages: write # allow GITHUB_TOKEN to publish packages
