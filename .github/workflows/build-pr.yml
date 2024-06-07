@@ -42,7 +42,7 @@ jobs:
         branch: ${{ github.head_ref || github.ref_name }}
         dry-run: true
 
-  test-nuget:
+  pack-nuget:
     runs-on: ubuntu-latest
     permissions:
       packages: read

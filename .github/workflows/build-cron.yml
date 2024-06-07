@@ -20,7 +20,7 @@ jobs:
         configurations: ${{ matrix.configurations }}
         frameworks: ${{ matrix.frameworks }}
 
-  test-nuget:
+  pack-nuget:
     runs-on: ubuntu-latest
     permissions:
       packages: read
@@ -37,7 +37,7 @@ jobs:
   ### TODO: do not tag here, instead create a branch, update dependencies (dotnet )
   update-dependencies:
     runs-on: ubuntu-latest
-    needs: test-nuget
+    needs: pack-nuget
     steps:
     - uses: kagekirin/gha-utils/.github/actions/git-checkout-tags@main
       with:

@@ -39,7 +39,7 @@ jobs:
         branch: main
         dry-run: false
 
-  test-nuget:
+  pack-nuget:
     runs-on: ubuntu-latest
     permissions:
       packages: read
