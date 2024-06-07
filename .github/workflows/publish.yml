@@ -30,4 +30,4 @@ jobs:
           net8.0
           netstandard2.1
         registry: ${{ matrix.registry }}
-        token: ${{ secrets[matrix.token] }}
+        nuget-token: ${{ secrets[matrix.token] }}
