@@ -1,9 +1,8 @@
-name: publish
+name: publish (nuget)
 
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types: [published]
 
 jobs:
   publish-nuget:
