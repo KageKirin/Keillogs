@@ -20,9 +20,10 @@ jobs:
           netstandard2.1
     - uses: kagekirin/gha-utils/.github/actions/gh-create-release@main
       with:
+        token: ${{ secrets.GH_RELEASE_TOKEN }}
         title: Release ${{ github.action_ref }}
         generate-notes: true
         files: |
           ${{ steps.build-pack.outputs.packages }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
