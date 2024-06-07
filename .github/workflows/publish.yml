@@ -6,20 +6,6 @@ on:
       - '*'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      packages: read
-    strategy:
-      matrix:
-        configurations: [Debug, Release]
-        frameworks: [net8.0]
-    steps:
-    - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build@main
-      with:
-        configurations: ${{ matrix.configurations }}
-        frameworks: ${{ matrix.frameworks }}
-
   nuget:
     runs-on: ubuntu-latest
     permissions:
@@ -36,7 +22,6 @@ jobs:
             registry: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
             username: ${{ github.repository_owner }}
             token: GITHUB_TOKEN
-    needs: build
     steps:
     - id: build-pack-publish
       uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack-publish@main
