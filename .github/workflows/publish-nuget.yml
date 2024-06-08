@@ -20,7 +20,7 @@ jobs:
           - source: github
             registry: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
             username: ${{ github.repository_owner }}
-            token: GITHUB_TOKEN
+            token: GH_PUBLISH_TOKEN
     steps:
     - id: build-pack-publish
       uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack-publish@main
