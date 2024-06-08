@@ -30,7 +30,7 @@ jobs:
       uses: kagekirin/gha-py-toolbox/actions/gh/upload-release-assets@main
       with:
         token: ${{ secrets.GH_RELEASE_TOKEN }}
-        release-id: ${{ steps.create-release.outputs.id }}
+        tag: ${{ github.action_ref }}
         files: |
           ${{ steps.build-pack.outputs.packages }}
       env:
