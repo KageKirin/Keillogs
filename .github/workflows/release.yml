@@ -18,7 +18,8 @@ jobs:
         frameworks: |-
           net8.0
           netstandard2.1
-    - uses: kagekirin/gha-utils/.github/actions/gh-create-release@main
+    - id: create-release
+      uses: kagekirin/gha-py-toolbox/actions/gh/create-release@main
       with:
         token: ${{ secrets.GH_RELEASE_TOKEN }}
         title: Release ${{ github.action_ref }}
