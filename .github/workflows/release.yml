@@ -24,6 +24,13 @@ jobs:
         token: ${{ secrets.GH_RELEASE_TOKEN }}
         title: Release ${{ github.action_ref }}
         generate-notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
+    - id: updload-assets
+      uses: kagekirin/gha-py-toolbox/actions/gh/upload-release-assets@main
+      with:
+        token: ${{ secrets.GH_RELEASE_TOKEN }}
+        release-id: ${{ steps.create-release.outputs.id }}
         files: |
           ${{ steps.build-pack.outputs.packages }}
       env:
