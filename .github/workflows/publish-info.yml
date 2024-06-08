@@ -1,0 +1,26 @@
+name: publish-info
+
+on:
+  registry_package:
+    types: [published]
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Show infos about published package
+      shell: python
+      env:
+        json: ${{ toJSON(github) }}
+      run: |-
+        """
+        ${{ toJSON(github) }}
+        """
+
+        import os, sys, json, pprint
+
+        jsondata = os.getenv('json')
+        print(jsondata)
+
+        data = json.loads(jsondata)
+        pprint.pp(data)
