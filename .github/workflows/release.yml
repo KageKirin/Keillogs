@@ -22,7 +22,7 @@ jobs:
       uses: kagekirin/gha-py-toolbox/actions/gh/create-release@main
       with:
         token: ${{ secrets.GH_RELEASE_TOKEN }}
-        title: Release ${{ github.action_ref }}
+        title: Release ${{ github.ref_name }}
         generate-notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
@@ -30,7 +30,7 @@ jobs:
       uses: kagekirin/gha-py-toolbox/actions/gh/upload-release-assets@main
       with:
         token: ${{ secrets.GH_RELEASE_TOKEN }}
-        tag: ${{ github.action_ref }}
+        tag: ${{ github.ref_name }}
         files: |
           ${{ steps.build-pack.outputs.packages }}
       env:
