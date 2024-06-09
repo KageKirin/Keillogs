@@ -38,13 +38,14 @@ jobs:
 
 
         package_url = urlparse(data['event']['registry_package']['package_version']['package_url'])
-        print(package_url)
+        print(package_url.geturl())
         if not package_url.scheme:
-            package_url.scheme = 'https'
+            package_url = urlparse(f'https://{package_url.geturl()}')
 
 
         token = str(os.getenv("GITHUB_TOKEN"))
         headers = {"Authorization": f"Bearer {token}"}
 
-        r = requests.get(str(package_url), headers=headers)
+        print(package_url.geturl())
+        r = requests.get(package_url.geturl(), headers=headers)
         pprint.pp(r)
