@@ -28,6 +28,7 @@ jobs:
         """
 
         import os, sys, json, pprint, requests
+        from urllib.parse import urlparse
 
         jsondata = os.getenv('json')
         print(jsondata)
@@ -36,11 +37,14 @@ jobs:
         pprint.pp(data)
 
 
-        package_url = data['event']['registry_package']['package_version']['package_url']
+        package_url = urlparse(data['event']['registry_package']['package_version']['package_url'])
         print(package_url)
+        if not package_url.scheme:
+            package_url.scheme = 'https'
+
 
         token = str(os.getenv("GITHUB_TOKEN"))
         headers = {"Authorization": f"Bearer {token}"}
 
-        r = requests.get(package_url, headers=headers)
+        r = requests.get(str(package_url), headers=headers)
         pprint.pp(r)
