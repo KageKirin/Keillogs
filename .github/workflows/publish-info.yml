@@ -39,7 +39,8 @@ jobs:
         package_url = data['event']['registry_package']['package_version']['package_url']
         print(package_url)
 
-        headers = {"Authorization": f"Bearer {os.getenv("GITHUB_TOKEN")}"}
+        token = str(os.getenv("GITHUB_TOKEN"))
+        headers = {"Authorization": f"Bearer {token}"}
 
         r = requests.get(package_url, headers=headers)
         pprint.pp(r)
