@@ -11,10 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-      shell: python -m pip install -r {0}
-      run: >-
-        PyGithub
-        requests
+      uses: kagekirin/gha-py-toolbox/actions/pip/install@main
+      with:
+        packages: >-
+          PyGithub
+          requests
+
     - name: Show infos about published package
       shell: python
       env:
