@@ -6,21 +6,38 @@ on:
 
 jobs:
   info:
+    permissions:
+      packages: read
     runs-on: ubuntu-latest
     steps:
+    - name: Install dependencies
+      shell: python -m pip install -r {0}
+      run: >-
+        PyGithub
+        requests
     - name: Show infos about published package
       shell: python
       env:
         json: ${{ toJSON(github) }}
+        GITHUB_TOKEN: github.token
       run: |-
         """
         ${{ toJSON(github) }}
         """
 
-        import os, sys, json, pprint
+        import os, sys, json, pprint, requests
 
         jsondata = os.getenv('json')
         print(jsondata)
 
         data = json.loads(jsondata)
         pprint.pp(data)
+
+
+        package_url = data['event']['registry_package']['package_version']['package_url']
+        print(package_url)
+
+        headers = {"Authorization": f"Bearer {os.getenv("GITHUB_TOKEN")}"}
+
+        r = requests.get(package_url, headers=headers)
+        pprint.pp(r)
