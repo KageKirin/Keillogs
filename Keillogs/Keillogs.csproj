@@ -8,9 +8,9 @@
 
   <!-- version metadata -->
   <PropertyGroup>
-    <Version>0.0.21</Version>
-    <AssemblyVersion>0.0.21.22</AssemblyVersion>
-    <FileVersion>0.0.21.22</FileVersion>
+    <Version>0.0.22</Version>
+    <AssemblyVersion>0.0.22.23</AssemblyVersion>
+    <FileVersion>0.0.22.23</FileVersion>
   </PropertyGroup>
 
   <!-- build metadata -->
