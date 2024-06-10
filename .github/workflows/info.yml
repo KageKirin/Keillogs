@@ -1,8 +1,9 @@
-name: Print info about published package
+name: info (event)
 
 on:
+  push:
+  pull_request:
   registry_package:
-    types: [published]
 
 jobs:
   info:
@@ -17,8 +18,3 @@ jobs:
       uses: kagekirin/gha-py-toolbox/actions/util/display-json-object@main
       with:
         object: ${{ toJSON(github.event) }}
-
-    - name: Show infos about registry package
-      uses: kagekirin/gha-py-toolbox/actions/util/display-json-object@main
-      with:
-        object: ${{ toJSON(github.event.registry_package) }}
