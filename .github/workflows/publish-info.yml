@@ -27,16 +27,16 @@ jobs:
         ${{ toJSON(github) }}
         """
 
-    - id: download-package
+    - id: download-packages
       name: Download published package
       uses: kagekirin/gha-py-toolbox/actions/gh/download-published-nuget-package@main
       with:
         registry_package_json: ${{ toJSON(github.event.registry_package) }}
         token: ${{ github.token }}
 
-    - id: updload-assets
+    - id: upload-assets
       uses: kagekirin/gha-py-toolbox/actions/gh/upload-release-assets@main
       with:
         token: ${{ github.token }}
         tag: v${{ github.event.registry_package.package_version.version }}
-        files: ${{ steps.download-package.outputs.package }}
+        files: ${{ steps.download-packages.outputs.packages }}
