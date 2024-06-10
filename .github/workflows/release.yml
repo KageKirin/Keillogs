@@ -11,27 +11,11 @@ jobs:
     permissions:
       contents: write # allow GITHUB_TOKEN to create releases
     steps:
-    - id: build-pack
-      uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack@main
-      with:
-        configurations: Release
-        frameworks: |-
-          net8.0
-          netstandard2.1
     - id: create-release
       uses: kagekirin/gha-py-toolbox/actions/gh/create-release@main
       with:
         token: ${{ secrets.GH_RELEASE_TOKEN }}
-        title: Release ${{ github.ref_name }}
+        title: Release ${{ github.event.ref }}
         generate-notes: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
-    - id: updload-assets
-      uses: kagekirin/gha-py-toolbox/actions/gh/upload-release-assets@main
-      with:
-        token: ${{ secrets.GH_RELEASE_TOKEN }}
-        tag: ${{ github.ref_name }}
-        files: |
-          ${{ steps.build-pack.outputs.packages }}
       env:
         GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
