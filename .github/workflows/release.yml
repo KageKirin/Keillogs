@@ -15,7 +15,7 @@ jobs:
       uses: kagekirin/gha-py-toolbox/actions/gh/create-release@main
       with:
         token: ${{ secrets.GH_RELEASE_TOKEN }}
-        title: Release ${{ github.event.ref }}
+        title: Release ${{ github.ref_name }}
         generate-notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
