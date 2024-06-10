@@ -3,6 +3,7 @@ name: info (event)
 on:
   push:
   pull_request:
+  release:
   registry_package:
 
 jobs:
