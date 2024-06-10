@@ -21,31 +21,14 @@ jobs:
       shell: python
       env:
         json: ${{ toJSON(github) }}
-        GITHUB_TOKEN: github.token
       run: |-
         """
         ${{ toJSON(github) }}
         """
 
-        import os, sys, json, pprint, requests
-        from urllib.parse import urlparse
-
-        jsondata = os.getenv('json')
-        print(jsondata)
-
-        data = json.loads(jsondata)
-        pprint.pp(data)
-
-
-        package_url = urlparse(data['event']['registry_package']['package_version']['package_url'])
-        print(package_url.geturl())
-        if not package_url.scheme:
-            package_url = urlparse(f'https://{package_url.geturl()}')
-
-
-        token = str(os.getenv("GITHUB_TOKEN"))
-        headers = {"Authorization": f"Bearer {token}"}
-
-        print(package_url.geturl())
-        r = requests.get(package_url.geturl(), headers=headers)
-        pprint.pp(r)
+    - id: download-package
+      name: Download published package
+      uses: kagekirin/gha-py-toolbox/actions/gh/download-published-nuget-package@main
+      with:
+        registry_package: github.event.registry_package
+        token: ${{ github.token }}
