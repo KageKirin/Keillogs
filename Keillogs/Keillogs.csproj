@@ -1,18 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <!-- build settings -->
   <PropertyGroup>
     <TargetFrameworks>net8.0;netstandard2.1</TargetFrameworks>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
-
   <!-- version metadata -->
   <PropertyGroup>
-    <Version>0.0.35</Version>
-    <AssemblyVersion>0.0.35.36</AssemblyVersion>
-    <FileVersion>0.0.35.36</FileVersion>
+    <Version>0.0.37</Version>
+    <AssemblyVersion>0.0.37.38</AssemblyVersion>
+    <FileVersion>0.0.37.38</FileVersion>
   </PropertyGroup>
-
   <!-- build metadata -->
   <PropertyGroup>
     <Title>Keillogs</Title>
@@ -21,20 +18,16 @@
     <PackageIcon>Icon.png</PackageIcon>
     <PackageIconUrl>https://raw.github.com/kagekirin/Keillogs/main/Keillogs/Icon.png</PackageIconUrl>
   </PropertyGroup>
-
   <!-- packaged files -->
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Icon.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
-
   <!-- package dependencies -->
   <ItemGroup>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -45,5 +38,4 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-
 </Project>
