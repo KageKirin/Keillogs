@@ -1,0 +1,73 @@
+name: publish (upm)
+
+on:
+  registry_package:
+    types: [published]
+
+jobs:
+  publish-upm:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write # allow GITHUB_TOKEN to publish packages
+    strategy:
+      matrix:
+        amalgamate: [true, false]
+        target: [npmjs, github]
+        include:
+          - target: npmjs
+            registry: https://api.npmjs.org/v3/index.json
+            username: KageKirin
+            token: NPMJS_ORG_TOKEN
+          - target: github
+            registry: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+            username: ${{ github.repository_owner }}
+            token: GH_PUBLISH_TOKEN
+    steps:
+    - id: nugettier-install
+      uses: kagekirin/gha-py-toolbox/actions/upm/nugettier-install@main
+      with:
+        accept-license: YES
+    - name: Configure defaults
+      uses: kagekirin/gha-py-toolbox/actions/upm/nugettier-config-defaults@main
+    - name: Configure GitHub NuGet registry
+      uses: kagekirin/gha-py-toolbox/actions/upm/nugettier-config-source@main
+      with:
+        registry: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        username: ${{ github.actor }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Configure official NuGet registry
+      uses: kagekirin/gha-py-toolbox/actions/upm/nugettier-config-source@main
+      with:
+        registry: https://api.nuget.org/v3/index.json
+        username: ''
+        token: ''
+    - name: Verify installation
+      shell: cat .netconfig .netconfig.user {0}
+      run: ''
+    - id: nugettier-info
+      name: NuGettier Info
+      uses: kagekirin/gha-py-toolbox/actions/upm/nugettier-info@main
+      with:
+        package: ${{ github.event.registry_package.name }}
+        version: ${{ github.event.registry_package.package_version.version }}
+        prerelease: true
+        verbosity: trace
+    - id: nugettier-pack
+      name: NuGettier Pack
+      uses: kagekirin/gha-py-toolbox/actions/upm/nugettier-pack@main
+      with:
+        registry: ${{ matrix.registry }}
+        package: ${{ github.event.registry_package.name }}
+        version: ${{ github.event.registry_package.package_version.version }}
+        amalgamate: ${{ matrix.amalgamate }}
+        prerelease: true
+        prerelease-suffix: ${{ github.run_id }}.${{ github.run_number }}
+        buildmeta-suffix: test.${{ matrix.target }}
+        verbosity: trace
+    - id: publish
+      uses: kagekirin/gha-py-toolbox/actions/npm/publish@main
+      with:
+        registry: ${{ matrix.registry }}
+        token: ${{ secrets[matrix.token] }}
+        access: public
+        package-file: ${{ steps.nugettier-pack.outputs.packagefile }}
