@@ -23,6 +23,7 @@ jobs:
             username: ${{ github.repository_owner }}
             token: GH_PUBLISH_TOKEN
     steps:
+    - uses: actions/checkout@v4
     - id: nugettier-install
       uses: kagekirin/gha-py-toolbox/actions/upm/nugettier-install@main
       with:
