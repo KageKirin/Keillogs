@@ -45,6 +45,10 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
+  <PropertyGroup Label="MinVer configuration">
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+  </PropertyGroup>
+
   <ItemGroup Label="packaged files">
     <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
     <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="\" />
@@ -56,6 +60,8 @@
     <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All" />
     <!-- enable source link -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+     <!-- enable automatic versioning -->
+    <PackageReference Include="MinVer" Version="5.0.0" PrivateAssets="All"/>
   </ItemGroup>
 
   <ItemGroup Label="source link settings">
