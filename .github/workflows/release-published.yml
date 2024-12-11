@@ -4,6 +4,10 @@ on:
   registry_package:
     types: [published]
 
+concurrency:
+  group: ${{ github.actor_id }}-${{ github.workflow }}-${{ github.ref }}-${{ github.sha }}
+  cancel-in-progress: true
+
 jobs:
   info:
     permissions:
