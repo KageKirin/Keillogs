@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         configurations: [Debug, Release]
-        frameworks: [net9.0, net8.0]
+        frameworks: [net9.0]
     steps:
     - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build@main
       with:
