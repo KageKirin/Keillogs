@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         amalgamate: ${{ fromJson(vars.UPM_AMALGAMATE) }}
-        target: [npmjs, github]
+        target: ${{ fromJson(vars.UPM_TARGETS) }}
         include:
           - target: npmjs
             registry: https://api.npmjs.org/v3/index.json
