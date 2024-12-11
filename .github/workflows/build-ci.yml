@@ -20,18 +20,14 @@ jobs:
     secrets: inherit
 
 
-  tag:
+  tag-release:
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - uses: kagekirin/gha-py-toolbox/jobs/git/checkout-bump-tag@main
-      with:
-        ssh-key: "${{secrets.DEPLOY_KEY}}"
-        name: 'GitHub CI on behalf of ${{ github.actor }}'
-        message: 'build (ci): update to version'
-        bump_patch: true
-        dry-run: false
+    needs:
+    - build
+    uses: kagekirin/gha-py-toolbox/.github/workflows/dotnet-release.yml@main
+    with:
+      dry-run: false
+    secrets: inherit
 
 
   pack-nuget:
