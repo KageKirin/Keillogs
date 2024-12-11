@@ -17,17 +17,7 @@ jobs:
       include: ${{ vars.BUILD_MATRIX }}
     secrets: inherit
 
-  test-tag:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - uses: kagekirin/gha-py-toolbox/jobs/git/checkout-bump-tag@main
-      with:
-        ssh-key: "${{secrets.DEPLOY_KEY}}"
-        message: 'build (ci): update to version'
-        name: 'GitHub CI on behalf of ${{ github.actor }}'
-        bump_patch: true
-        dry-run: true
+
 
   pack-nuget:
     needs:
