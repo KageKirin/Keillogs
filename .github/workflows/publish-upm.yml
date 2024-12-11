@@ -4,6 +4,10 @@ on:
   registry_package:
     types: [published]
 
+concurrency:
+  group: ${{ github.actor_id }}-${{ github.workflow }}-${{ github.ref }}-${{ github.sha }}-${{ github.event.registry_package.name }}-${{ github.event.registry_package.package_version.name }}-${{ github.event.registry_package.id }}
+  cancel-in-progress: true
+
 jobs:
   publish-upm:
     runs-on: ubuntu-latest
