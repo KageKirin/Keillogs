@@ -12,7 +12,7 @@ jobs:
       packages: read
     strategy:
       matrix:
-        configurations: [Debug, Release]
+        configurations: ${{ fromJson(vars.CONFIGURATIONS) }}
         frameworks: [net9.0]
     steps:
     - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build@main
