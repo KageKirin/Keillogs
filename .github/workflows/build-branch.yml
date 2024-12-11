@@ -11,16 +11,9 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    permissions:
-      packages: read
-    strategy:
-      matrix:
-        configurations: ${{ fromJson(vars.CONFIGURATIONS) }}
-        frameworks: ${{ fromJson(vars.FRAMEWORKS) }}
-        include: ${{ fromJson(vars.BUILD_MATRIX) }}
-    steps:
-    - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build@main
-      with:
-        configurations: ${{ matrix.configurations }}
-        frameworks: ${{ matrix.frameworks }}
+    uses: kagekirin/gha-py-toolbox/.github/workflows/dotnet-build.yml@main
+    with:
+      configurations: ${{ vars.CONFIGURATIONS }}
+      frameworks: ${{ vars.FRAMEWORKS }}
+      include: ${{ vars.BUILD_MATRIX }}
+    secrets: inherit
