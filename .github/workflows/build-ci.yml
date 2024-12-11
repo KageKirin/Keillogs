@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         configurations: ${{ fromJson(vars.CONFIGURATIONS) }}
-        frameworks: [net9.0]
+        frameworks: ${{ fromJson(vars.FRAMEWORKS) }}
     steps:
     - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build@main
       with:
