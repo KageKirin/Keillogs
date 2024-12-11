@@ -11,7 +11,7 @@ jobs:
       packages: write # allow GITHUB_TOKEN to publish packages
     strategy:
       matrix:
-        source: [nuget, github]
+        source: ${{ fromJson(vars.DEPLOY_SOURCES) }}
         include:
           - source: nuget
             registry: https://api.nuget.org/v3/index.json
