@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+concurrency:
+  group: ${{ github.actor_id }}-${{ github.workflow }}-${{ github.ref }}-${{ github.sha }}
+  cancel-in-progress: true
+
 jobs:
   build:
     if: github.ref == 'refs/heads/main'
