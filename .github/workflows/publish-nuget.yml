@@ -25,7 +25,7 @@ jobs:
     - id: build-pack-publish
       uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack-publish@main
       with:
-        configurations: Release
+        configurations: ${{ join(fromJson(vars.DEPLOY_CONFIGURATIONS), ' ') }}
         frameworks: |-
           net9.0
           netstandard2.1
