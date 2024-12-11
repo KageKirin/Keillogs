@@ -44,6 +44,4 @@ jobs:
     - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack@main
       with:
         configurations: ${{ join(fromJson(vars.DEPLOY_CONFIGURATIONS), ' ') }}
-        frameworks: |-
-          net9.0
-          netstandard2.1
+        frameworks: ${{ join(fromJson(vars.DEPLOY_FRAMEWORKS), ' ') }}
