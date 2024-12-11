@@ -11,7 +11,7 @@ jobs:
       packages: write # allow GITHUB_TOKEN to publish packages
     strategy:
       matrix:
-        amalgamate: [true, false]
+        amalgamate: ${{ fromJson(vars.UPM_AMALGAMATE) }}
         target: [npmjs, github]
         include:
           - target: npmjs
