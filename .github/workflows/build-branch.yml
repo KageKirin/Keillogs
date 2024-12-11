@@ -12,8 +12,9 @@ jobs:
       packages: read
     strategy:
       matrix:
-        configurations: [Debug, Release]
-        frameworks: [net9.0]
+        configurations: ${{ fromJson(vars.CONFIGURATIONS) }}
+        frameworks: ${{ fromJson(vars.FRAMEWORKS) }}
+        include: ${{ fromJson(vars.BUILD_MATRIX) }}
     steps:
     - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build@main
       with:
