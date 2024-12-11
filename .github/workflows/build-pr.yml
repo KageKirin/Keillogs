@@ -30,16 +30,14 @@ jobs:
         dry-run: true
 
   pack-nuget:
-    runs-on: ubuntu-latest
-    permissions:
-      packages: read
-    needs: build
-    steps:
-    - uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack@main
-      with:
-        configurations: ${{ join(fromJson(vars.DEPLOY_CONFIGURATIONS), ' ') }}
-        frameworks: ${{ join(fromJson(vars.DEPLOY_FRAMEWORKS), ' ') }}
-
+    needs:
+    - build
+    uses: kagekirin/gha-py-toolbox/.github/workflows/dotnet-pack-nuget.yml@main
+    with:
+      configurations: ${{ vars.DEPLOY_CONFIGURATIONS }}
+      frameworks: ${{ vars.DEPLOY_FRAMEWORKS }}
+      projects: ${{ vars.DEPLOY_PROJECTS }}
+    secrets: inherit
 
   test-update-dependencies:
     runs-on: ubuntu-latest
