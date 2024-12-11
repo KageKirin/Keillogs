@@ -41,7 +41,7 @@ jobs:
       with:
         configurations: Release
         frameworks: |-
-          net8.0
+          net9.0
           netstandard2.1
 
 
