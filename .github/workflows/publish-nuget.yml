@@ -12,15 +12,7 @@ jobs:
     strategy:
       matrix:
         source: ${{ fromJson(vars.DEPLOY_SOURCES) }}
-        include:
-          - source: nuget
-            registry: https://api.nuget.org/v3/index.json
-            username: KageKirin
-            token: NUGET_ORG_TOKEN
-          - source: github
-            registry: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-            username: ${{ github.repository_owner }}
-            token: GH_PUBLISH_TOKEN
+        include: ${{ fromJson(vars.DEPLOY_MATRIX) }}
     steps:
     - id: build-pack-publish
       uses: kagekirin/gha-py-toolbox/jobs/dotnet/checkout-build-pack-publish@main
