@@ -13,15 +13,7 @@ jobs:
       matrix:
         amalgamate: ${{ fromJson(vars.UPM_AMALGAMATE) }}
         target: ${{ fromJson(vars.UPM_TARGETS) }}
-        include:
-          - target: npmjs
-            registry: https://api.npmjs.org/v3/index.json
-            username: KageKirin
-            token: NPMJS_ORG_TOKEN
-          - target: github
-            registry: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-            username: ${{ github.repository_owner }}
-            token: GH_PUBLISH_TOKEN
+        include: ${{ fromJson(vars.UPM_MATRIX) }}
     steps:
     - uses: actions/checkout@v4
     - id: nugettier-install
