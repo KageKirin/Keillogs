@@ -8,14 +8,5 @@ on:
 
 jobs:
   info:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Show infos about GitHub
-      uses: kagekirin/gha-py-toolbox/actions/util/display-json-object@main
-      with:
-        object: ${{ toJSON(github) }}
-
-    - name: Show infos about event
-      uses: kagekirin/gha-py-toolbox/actions/util/display-json-object@main
-      with:
-        object: ${{ toJSON(github.event) }}
+    uses: kagekirin/gha-py-toolbox/.github/workflows/github-event-info.yml@main
+    secrets: inherit
