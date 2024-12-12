@@ -1,8 +1,9 @@
-name: build-cron
+name: build-tag
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
+    tags:
+      - '*'
 
 concurrency:
   group: ${{ github.actor_id }}-${{ github.workflow }}-${{ github.ref }}-${{ github.sha }}
@@ -10,23 +11,11 @@ concurrency:
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/main'
     uses: kagekirin/gha-py-toolbox/.github/workflows/dotnet-build.yml@main
     with:
       configurations: ${{ vars.CONFIGURATIONS }}
       frameworks: ${{ vars.FRAMEWORKS }}
       include: ${{ vars.BUILD_MATRIX }}
-    secrets: inherit
-
-
-  pack-nuget:
-    needs:
-    - build
-    uses: kagekirin/gha-py-toolbox/.github/workflows/dotnet-pack-nuget.yml@main
-    with:
-      configurations: ${{ vars.DEPLOY_CONFIGURATIONS }}
-      frameworks: ${{ vars.DEPLOY_FRAMEWORKS }}
-      projects: ${{ vars.DEPLOY_PROJECTS }}
     secrets: inherit
 
 
