@@ -9,22 +9,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  info:
-    permissions:
-      packages: read
-      contents: write
-    runs-on: ubuntu-latest
-    steps:
-    - id: download-packages
-      name: Download published package
-      uses: kagekirin/gha-py-toolbox/actions/gh/download-published-nuget-package@main
-      with:
-        registry_package_json: ${{ toJSON(github.event.registry_package) }}
-        token: ${{ github.token }}
-
-    - id: upload-assets
-      uses: kagekirin/gha-py-toolbox/actions/gh/upload-release-assets@main
-      with:
-        token: ${{ github.token }}
-        tag: v${{ github.event.registry_package.package_version.version }}
-        files: ${{ steps.download-packages.outputs.packages }}
+  release-published:
+    uses: kagekirin/gha-py-toolbox/.github/workflows/github-add-published-package-to-release.yml@main
+    secrets: inherit
