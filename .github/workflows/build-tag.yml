@@ -1,10 +1,9 @@
-name: build-ci
+name: build-tag
 
 on:
-  pull_request:
-    branches:
-      - 'main'
-    types: [closed]
+  push:
+    tags:
+      - '*'
 
 concurrency:
   group: ${{ github.actor_id }}-${{ github.workflow }}-${{ github.ref }}-${{ github.sha }}
@@ -20,19 +19,6 @@ jobs:
     secrets: inherit
 
 
-  tag-release:
-    if: github.event.pull_request.merged == true
-    permissions:
-      contents: write
-      packages: read
-    needs:
-    - build
-    uses: kagekirin/gha-py-toolbox/.github/workflows/dotnet-release.yml@main
-    with:
-      dry-run: false
-    secrets: inherit
-
-
   unittests:
     needs:
     - build
@@ -42,15 +28,4 @@ jobs:
       configurations: ${{ vars.CONFIGURATIONS }}
       frameworks: ${{ vars.TEST_FRAMEWORKS }}
       include: ${{ vars.TEST_MATRIX }}
-    secrets: inherit
-
-
-  pack-nuget:
-    needs:
-    - build
-    uses: kagekirin/gha-py-toolbox/.github/workflows/dotnet-pack-nuget.yml@main
-    with:
-      configurations: ${{ vars.DEPLOY_CONFIGURATIONS }}
-      frameworks: ${{ vars.DEPLOY_FRAMEWORKS }}
-      projects: ${{ vars.DEPLOY_PROJECTS }}
     secrets: inherit

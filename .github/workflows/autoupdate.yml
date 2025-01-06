@@ -1,0 +1,14 @@
+name: autoupdate
+
+on:
+  #schedule:
+  #- cron: '1/20 * * * *'
+  workflow_dispatch:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  autoupdate:
+    uses: kagekirin/gha-py-toolbox/.github/workflows/github-autoupdate-pullrequests.yml@main
+    secrets: inherit
