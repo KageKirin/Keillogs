@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keillogs", "Keillogs\Keillogs.csproj", "{4C0BABAA-5CDF-4C26-BBFF-A733071FACED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6286D683-1C8E-4582-8D72-430D5D1DAB97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functionality", "Tests\Functionality\Functionality.csproj", "{8BAC0C1B-622A-4519-9322-867310ABB3BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,12 @@ Global
 		{4C0BABAA-5CDF-4C26-BBFF-A733071FACED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C0BABAA-5CDF-4C26-BBFF-A733071FACED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C0BABAA-5CDF-4C26-BBFF-A733071FACED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BAC0C1B-622A-4519-9322-867310ABB3BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BAC0C1B-622A-4519-9322-867310ABB3BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BAC0C1B-622A-4519-9322-867310ABB3BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BAC0C1B-622A-4519-9322-867310ABB3BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8BAC0C1B-622A-4519-9322-867310ABB3BC} = {6286D683-1C8E-4582-8D72-430D5D1DAB97}
 	EndGlobalSection
 EndGlobal
