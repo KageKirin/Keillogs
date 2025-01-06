@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "Keillogs.sln",
+    "projects": [
+      "Keillogs\\Keillogs.csproj",
+      "Tests\\Functionality\\Functionality.csproj"
+    ]
+  }
+}
