@@ -60,7 +60,7 @@
     <!-- enable reproducible builds -->
     <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All" />
     <!-- enable source link -->
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     <!-- enable automatic versioning -->
     <PackageReference Include="MinVer" Version="5.0.0" PrivateAssets="All"/>
   </ItemGroup>
