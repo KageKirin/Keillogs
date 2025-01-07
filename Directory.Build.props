@@ -56,11 +56,6 @@
     <None Include="$(MSBuildThisFileDirectory)CHANGELOG.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <ItemGroup Label="package dependencies">
-    <!-- enable automatic versioning -->
-    <PackageReference Include="MinVer" PrivateAssets="All"/>
-  </ItemGroup>
-
   <ItemGroup Label="source link settings">
     <SourceLinkGitHubHost Include="github.com" ContentUrl="https://raw.github.com" />
   </ItemGroup>
