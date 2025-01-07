@@ -58,7 +58,7 @@
 
   <ItemGroup Label="package dependencies">
     <!-- enable reproducible builds -->
-    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All" />
     <!-- enable source link -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <!-- enable automatic versioning -->
