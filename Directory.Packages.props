@@ -7,6 +7,7 @@
   </ItemGroup>
 
   <ItemGroup Label="nuget dependencies">
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup Label="global package references">
