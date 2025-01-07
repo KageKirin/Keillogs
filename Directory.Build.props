@@ -57,8 +57,6 @@
   </ItemGroup>
 
   <ItemGroup Label="package dependencies">
-    <!-- enable source link -->
-    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     <!-- enable automatic versioning -->
     <PackageReference Include="MinVer" PrivateAssets="All"/>
   </ItemGroup>
