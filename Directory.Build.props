@@ -1,7 +1,6 @@
 <Project>
 
   <PropertyGroup Label="common build settings">
-    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ImplicitUsings>enable</ImplicitUsings>
