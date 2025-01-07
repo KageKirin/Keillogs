@@ -9,6 +9,7 @@
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <UseArtifactsOutput>true</UseArtifactsOutput>
     <ArtifactsPath>$(MSBuildThisFileDirectory).artifacts</ArtifactsPath>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
 
   <PropertyGroup Label="publishing settings">
@@ -54,15 +55,6 @@
     <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
     <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="\" />
     <None Include="$(MSBuildThisFileDirectory)CHANGELOG.md" Pack="true" PackagePath="\" />
-  </ItemGroup>
-
-  <ItemGroup Label="package dependencies">
-    <!-- enable reproducible builds -->
-    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All" />
-    <!-- enable source link -->
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    <!-- enable automatic versioning -->
-    <PackageReference Include="MinVer" Version="5.0.0" PrivateAssets="All"/>
   </ItemGroup>
 
   <ItemGroup Label="source link settings">
