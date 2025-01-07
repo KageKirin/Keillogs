@@ -6,4 +6,7 @@
   <ItemGroup Label="nuget dependencies">
   </ItemGroup>
 
+  <ItemGroup Label="global package references">
+  </ItemGroup>
+
 </Project>
