@@ -1,13 +1,14 @@
 <Project>
 
   <PropertyGroup Label="common build settings">
-    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageOutputPath>./nupkg</PackageOutputPath>
     <IncludeBuildOutput>true</IncludeBuildOutput>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <ArtifactsPath>$(MSBuildThisFileDirectory).artifacts</ArtifactsPath>
   </PropertyGroup>
 
   <PropertyGroup Label="publishing settings">
@@ -60,7 +61,7 @@
     <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All" />
     <!-- enable source link -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-     <!-- enable automatic versioning -->
+    <!-- enable automatic versioning -->
     <PackageReference Include="MinVer" Version="5.0.0" PrivateAssets="All"/>
   </ItemGroup>
 
