@@ -57,8 +57,6 @@
   </ItemGroup>
 
   <ItemGroup Label="package dependencies">
-    <!-- enable reproducible builds -->
-    <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All" />
     <!-- enable source link -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     <!-- enable automatic versioning -->
