@@ -62,7 +62,7 @@
     <!-- enable source link -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     <!-- enable automatic versioning -->
-    <PackageReference Include="MinVer" Version="5.0.0" PrivateAssets="All"/>
+    <PackageReference Include="MinVer" PrivateAssets="All"/>
   </ItemGroup>
 
   <ItemGroup Label="source link settings">
