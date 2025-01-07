@@ -23,6 +23,8 @@
     <GlobalPackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All" />
     <!-- enable source link -->
     <GlobalPackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <!-- enable automatic versioning -->
+    <GlobalPackageReference Include="MinVer" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
