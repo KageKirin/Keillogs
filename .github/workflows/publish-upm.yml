@@ -18,5 +18,7 @@ jobs:
       amalgamate: ${{ vars.UPM_AMALGAMATE }}
       targets: ${{ vars.UPM_TARGETS }}
       include: ${{ vars.UPM_MATRIX }}
+      nugettier-config: ${{ vars.NUGETTIER_NETCONFIG }}
+      nugettier-user-config: ${{ vars.NUGETTIER_NETCONFIG_USER }}
       dry-run: false
     secrets: inherit
