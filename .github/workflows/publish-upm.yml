@@ -10,6 +10,9 @@ concurrency:
 
 jobs:
   upm:
+    permissions:
+      contents: read
+      packages: write
     uses: kagekirin/gha-py-toolbox/.github/workflows/dotnet-publish-upm.yml@main
     with:
       amalgamate: ${{ vars.UPM_AMALGAMATE }}
