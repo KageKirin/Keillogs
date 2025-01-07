@@ -21,6 +21,8 @@
   <ItemGroup Label="global package references">
     <!-- enable reproducible builds -->
     <GlobalPackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All" />
+    <!-- enable source link -->
+    <GlobalPackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
