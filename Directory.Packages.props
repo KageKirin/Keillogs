@@ -3,4 +3,7 @@
   <ItemGroup Label="build dependencies">
   </ItemGroup>
 
+  <ItemGroup Label="nuget dependencies">
+  </ItemGroup>
+
 </Project>
